@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+
+</head>
+<body bgcolor="white">
+
+<p>地址CIDR <input type="text" name="cird_str" id="cidr" value="192.168.1.1/24" onblur="calculateSubnet()"></p>
+<p><span id="cidr_checker"></span></p>
+<p>首个地址: <input type="text" id="firstIP" value="" readonly="true"/></p>
+<p>最后地址: <input type="text" id="lastIP" value="" readonly="true"/></p>
+<p>广播地址: <input type="text" id="boardcastIP" value="" readonly="true"/></p>
+<p>可用地址数量: <input type="text" id="availableIPCount" value="" readonly="true"/></p>
+
+<p>子网掩码
+    <select name="subNet" id="subNet" onchange="updateSubNetworkDetail(this.value)"> 
+        <option value=""></option> 
+    </select>
+</p>
+
+<p>子网数目
+    <select name="subNetCount" id="subNetCount" onchange="updateSubNetworkDetail(this.value)"> 
+        <option value=""></option> 
+    </select>
+    </p>
+
+<p>子网主机数目
+<select name="subHostCount" id="subHostCount" onchange="updateSubNetworkDetail(this.value)"> 
+    <option value=""></option> 
+</select>
+</p>
+
+<table id="subNetDetail" border="0" cellspacing="25">
+    <tr>
+        <td>子网ID</td>
+        <td>子网地址</td>
+        <td>首个地址</td>
+        <td>最后地址</td>
+        <td>可用地址数量</td>
+    </tr>
+</table>
+
+<table>
+      <tbody id="tbody1">
+      </tbody>
+</table>
+
+<script src="./subnetCalculator.js"></script>
+</body>
+</html>
