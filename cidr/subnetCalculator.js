@@ -216,7 +216,6 @@ function clearOptions(elementId) {
 function selectOption(elementId, value) {
 	for (var i=0;i<elementId.length;i++){
 		if(elementId[i].value == value){
-			////注("选择 : "+elementId[i].value+"   "+value);
 			elementId.selectedIndex = i;
 			break;
 		}
