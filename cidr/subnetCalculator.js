@@ -130,12 +130,12 @@ IPv4.transBStrToStr = function(b_str) {
 var ip4 = new IPv4();
 
 function calculateSubnet() {
+    cleatInformation("cidrChecker")
     var cidr_str = cidr.value
     if (!check_ipv4_cidr_format(cidr_str)) {
-        document.getElementById("cidr_checker").innerHTML="cidr format error!";
+        addInformation("cidrChecker", "CIDR格式错误！")
         return
     }
-    document.getElementById("cidr_checker").innerHTML="";
     ip4.parseCidrStr(cidr_str)
     ip4.transIP()
 
@@ -242,6 +242,7 @@ function getOptionText(elementId, value) {
 }
 
 function updateSubNetDetail(subNetDetail) {
+    cleatInformation("tableInfo")
     var subNetDetailTable = document.getElementById("subNetDetail").firstElementChild;
 
     var tableChild = subNetDetailTable.childNodes;
@@ -249,14 +250,29 @@ function updateSubNetDetail(subNetDetail) {
     for (let i = tableChild.length - 1; i > 0; i--) {
         subNetDetailTable.removeChild(tableChild[i])
     }
-
-    for (let i = 0; i < subNetDetail.length; i++) {
+    // TODO: fix html cannot load too much line?
+    // limit it in 4096 line
+    var subNetDetailLength = subNetDetail.length
+    if (subNetDetailLength > 4096) {
+        subNetDetailLength = 4096
+        addInformation("tableInfo", "数量过多，仅展示前4096行")
+    }
+    for (let i = 0; i < subNetDetailLength; i++) {
         var tr = document.createElement("tr");
         html_s = "<td>" + subNetDetail[i].join("</td><td>") + "</td>"
         tr.innerHTML = html_s
         subNetDetailTable.appendChild(tr)
     }
 
+}
+function addInformation(elementId, info) {
+    e = document.getElementById(elementId)
+    e.innerHTML = info
+}
+
+function cleatInformation(elementId) {
+    e = document.getElementById(elementId)
+    e.innerHTML = ""
 }
 
 window.onload = calculateSubnet()
