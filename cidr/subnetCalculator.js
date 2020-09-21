@@ -43,7 +43,7 @@ function IPv4(a, b, c, d, nmLen) {
         var bb = ((parseInt(this.b)<<16)>>>0);
         var cc = ((parseInt(this.c)<<8)>>>0);
         var dd = (parseInt(this.d)>>>0);
-        this.ipS = (aa + bb + cc + dd).toString(2)
+        this.ipS = (aa + bb + cc + dd).toString(2).padStart(32,'0')
         this.a2 = this.ipS.substr(0, 8)
         this.b2 = this.ipS.substr(8, 8)
         this.c2 = this.ipS.substr(16, 8)
@@ -101,7 +101,7 @@ function IPv4(a, b, c, d, nmLen) {
         subNwCount = 1 << (subNmMLen - this.nmLen)
         for (let i = 0; i < subNwCount; i++) {
             s = nwPrefixN + subNwStep * i
-            s = s.toString(2)
+            s = s.toString(2).padStart(32,'0')
             var subNet = IPv4.transBStrToStr(s)
             var subNetFirst = s.substr(0, subNmMLen) + "0".repeat(subNwStepLen - 1) + "1"
             subNetFirst = IPv4.transBStrToStr(subNetFirst)
