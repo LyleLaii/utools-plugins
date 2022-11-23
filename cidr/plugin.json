@@ -1,6 +1,6 @@
 {
 	"pluginName": "子网划分",
-	"version": "0.0.3",
+	"version": "1.0.1",
 	"description": "简易子网划分计算器",
 	"author": "lylelaii",
 	"homepage": "https://github.com/LyleLaii/utools-plugins",

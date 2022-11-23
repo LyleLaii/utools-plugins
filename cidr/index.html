@@ -1,48 +1,91 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta charset="utf-8">
-<title>CIDR Subnet Calculator</title>
+ <head>
+<style type="text/css">
+ .contentwrap {
+			width: 98%;
+			margin: 0 auto;
+			padding: 10px;
+		}
+		ul {
+			list-style: none;
+			margin: 0;
+			padding-left: 20px;
+		}
+		ul.tab {
+			border-bottom: 1px solid #ccc;
+			padding-bottom:1px;
+			height: 30px;
+			line-height: 30px;
+			color: #696969;
+		}
+		ul.tab li {
+			float: left;
+			font-family: "微软雅黑";
+			cursor: pointer;
+			padding: 0px;
+			
+			
+		}
+		ul.tab li.li {
+			padding: 0px 25px 0px;
+			font-size: 13px;
+			height: 30px;
+			line-height: 30px;
+			background:#F4F5F9;
+			border-top: 1px solid #C5D0DC;
+			border-left: 1px solid #C5D0DC;
+			border-bottom: 1px solid #C5D0DC;
+			
+		}
+		ul.tab li.current {
+			border-bottom: 0px;
+			border-top: 2px solid #7599DE;
+			font-size: 13px;
+			color: #343434;
+			background:#FFFFFF;
+			
+		}
+		ul.tab li.li:last-child{border-right: 1px solid #C5D0DC;}	
+</style>
+ </head>
+ 
+ <body>
+  <div id="contentwrap"  class="contentwrap">
+		<ul class="tab">
+			<li id="li_tab1" class="li current" onclick="toTab1()"><span>IPV4子网划分计算</span></li>
+			<li id="li_tab2" class="li" onclick="toTab2()"><span>IPV4反掩码计算</span></li>
+			<li id="li_tab3" class="li" onclick="toTab3()"><span>TDB</span></li>
+		</ul>
+	</div>
+    <div id="contentarea">
+        <object type="text/html" data="ipv4Cal.html" width="1000" height="1000"></object>
+        </div>
+ </body>
+ <script>
+ 
+ 
+ function toTab1() {
+	document.getElementById("li_tab1").className="li current";
+	document.getElementById("li_tab2").className="li";
+	document.getElementById("li_tab3").className="li";
+    document.getElementById("contentarea").innerHTML = '<object type="text/html" data="subnetCalculatorV4.html" width="1000" height="1000"></object>'
 
-</head>
-<body bgcolor="white">
+}
+ 
+function toTab2() {
+	document.getElementById("li_tab1").className="li";
+	document.getElementById("li_tab2").className="li current";
+	document.getElementById("li_tab3").className="li";
+    document.getElementById("contentarea").innerHTML = '<object type="text/html" data="wildcardMaskCal.html" width="1000" height="1000"></object>'
+}
+function toTab3() {
+	document.getElementById("li_tab1").className="li";
+	document.getElementById("li_tab2").className="li";
+	document.getElementById("li_tab3").className="li current";
+    document.getElementById("contentarea").innerHTML = '<p>TBD</p>'
 
-<p>地址CIDR <input type="text" name="cird_str" id="cidr" value="192.168.1.1/24" onblur="calculateSubnet()"></p>
-<p><span id="cidrChecker"></span></p>
-<p>首个地址: <input type="text" id="firstIP" value="" readonly="true"/></p>
-<p>最后地址: <input type="text" id="lastIP" value="" readonly="true"/></p>
-<p>广播地址: <input type="text" id="boardcastIP" value="" readonly="true"/></p>
-<p>可用地址数量: <input type="text" id="availableIPCount" value="" readonly="true"/></p>
-
-<p>子网掩码
-    <select name="subNet" id="subNet" onchange="updateSubNetworkDetail(this.value)"> 
-        <option value=""></option> 
-    </select>
-</p>
-
-<p>子网数目
-    <select name="subNetCount" id="subNetCount" onchange="updateSubNetworkDetail(this.value)"> 
-        <option value=""></option> 
-    </select>
-    </p>
-
-<p>子网主机数目
-<select name="subHostCount" id="subHostCount" onchange="updateSubNetworkDetail(this.value)"> 
-    <option value=""></option> 
-</select>
-</p>
-
-<p><span id="tableInfo"></span></p>
-<table id="subNetDetail" border="0" cellspacing="25">
-    <tr>
-        <td>子网ID</td>
-        <td>子网地址</td>
-        <td>首个地址</td>
-        <td>最后地址</td>
-        <td>广播地址</td>
-    </tr>
-</table>
-
-<script src="./subnetCalculator.js"></script>
-</body>
+	
+}
+ </script>
 </html>
