@@ -1,10 +1,3 @@
-function total(){
-    var a=document.getElementById('f').value;
-    var b=document.getElementById('s').value;
-    var total=Number(a)+Number(b);
-    document.getElementById('result').innerHTML=total;
-}
-
 var cidr = document.getElementById("cidr");
 cidr.addEventListener("keyup", function(event) {
     event.preventDefault();

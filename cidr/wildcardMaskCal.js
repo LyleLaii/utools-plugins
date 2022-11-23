@@ -76,9 +76,20 @@ IPv4.transBStrToStr = function(b_str) {
 
 }; 
 
-IPv4.checkMaskAddress = function(b_str) {
+IPv4.checkMaskAddress = function(b_str, rev) {
     var end = false
-
+    if (rev == true) {
+        for (let ch of b_str) {
+            if (ch == "1") {
+                end = true
+            }
+    
+            if (end == true && ch == "0") {
+                return false
+            }
+        }
+        return true 
+    }
     for (let ch of b_str) {
         if (ch == "0") {
             end = true
@@ -121,7 +132,7 @@ function calculateWildcardMask() {
     addInformation("WildcardMaskAddress", IPv4.transBStrToStr(ip4.WcMipS))
     addInformation("binWildcardMaskAddress", ip4.WcMipS1)
 
-    if (!IPv4.checkMaskAddress(ip4.ipS)) {
+    if (!IPv4.checkMaskAddress(ip4.ipS, false)) {
         addInformation("addressChecker", "掩码出现不连续的1，请检查")
         return
     }
@@ -135,6 +146,12 @@ function checkResult() {
         addInformation("compare_result", "源地址格式错误！")
         return
     }
+    var wcm = document.getElementById("wcm_address_str").value
+    if (!check_ipv4_format(wcm)) {
+        addInformation("compare_result", "通配符地址格式错误！")
+        return
+    }
+
     var test = document.getElementById("test_address_str").value
     if (!check_ipv4_format(test)) {
         addInformation("compare_result", "测试地址格式错误！")
@@ -142,20 +159,24 @@ function checkResult() {
     }
 
     var target_v4 = new IPv4();
+    var wcm_v4 = new IPv4();
     var test_v4 = new IPv4();
     var result = ""
 
     target_v4.parseAddressStr(target)
     target_v4.transIP()
 
+    wcm_v4.parseAddressStr(wcm)
+    wcm_v4.transIP()
+
     test_v4.parseAddressStr(test)
     test_v4.transIP()
 
     result += "<code>源地址二进制:  " + target_v4.ipS1 + "</code><br>"
-    result += "<code>反掩码二进制:  " + ip4.WcMipS1 + "</code><br>"
+    result += "<code>通配符二进制:  " + wcm_v4.ipS1 + "</code><br>"
     result += "<code>测地址二进制:  " + test_v4.ipS1 + "</code><br>"
 
-    if (IPv4.checkWcMCompare(target_v4.ipS, test_v4.ipS, ip4.WcMipS)) {
+    if (IPv4.checkWcMCompare(target_v4.ipS, test_v4.ipS, wcm_v4.ipS)) {
         result += "匹配"
     } else {
         result += "不匹配"
