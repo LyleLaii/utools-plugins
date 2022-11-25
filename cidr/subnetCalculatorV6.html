@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CIDR Subnet Calculator</title>
+<style type="text/css">
+#cidr {
+    width: 300px;
+}
+
+</style>
+</head>
+<body bgcolor="white">
+
+<p>IPV6地址/前缀 <input type="text" name="cird_str" id="cidr" style="width:300px" value="2000:0000:0000:0000:0001:2345:6789:abcd/64" onblur="calculateSubnet()"></p>
+<p><span id="cidrChecker" style="color:red"></span></p>
+<p>IPV6完全地址: <input type="text" id="FullIP" style="width:300px" value="" readonly="true"/></p>
+<p>IPV6压缩地址: <input type="text" id="CompressIP" style="width:300px" value="" readonly="true"/></p>
+<p>最大可用子网数量: <input type="text" style="width:300px" id="maxAvailableSubNetCount" value="" readonly="true"/></p>
+<!-- <p>可用主机数量: <input type="text" id="maxAvailableHostCount" value="" readonly="true"/></p> -->
+<p>首个地址: <input type="text" id="firstIP" style="width:300px" value="" readonly="true"/></p>
+<p>最后地址: <input type="text" id="lastIP" style="width:300px" value="" readonly="true"/></p>
+<br>
+<br>
+<p>前缀地址空间匹配检查 <span id="text1"></span></p>
+<p>测试地址 <input type="text" name="test_address_str" id="test_address_str" style="width:300px" value="2000:0000:0000:0000:0001:2345:6789:bcde"></p>
+<button id="testAddress" onClick="checkResult()">测试</button>
+<p>测试结果</p>
+<p><span id="compare_result"></span></p>
+
+
+<script src="./subnetCalculatorV6.js"></script>
+</body>
+</html>

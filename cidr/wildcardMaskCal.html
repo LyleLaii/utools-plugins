@@ -8,16 +8,17 @@
 <body bgcolor="white">
 
 <p>掩码地址 <input type="text" name="address_str" id="address_str" value="255.255.255.0" onblur="calculateWildcardMask()"></p>
-<p><span id="addressChecker"></span></p>
+<p><span id="cidrChecker" style="color:red"></span></p>
 <p>二进制表示 <span id="binAddress"></span></p>
 <p>反掩码地址 <span id="WildcardMaskAddress"></span></p>
 <p>二进制表示 <span id="binWildcardMaskAddress"></span></p>
-
+<br>
+<br>
 <p>ACL通配符检查 <span id="text1"></span></p>
-<button id="testAddress" onClick="checkResult()">测试</button>
 <p>源地址 <input type="text" name="target_address_str" id="target_address_str" value="192.168.1.1"></p>
 <p>通配符地址 <input type="text" name="wcm_address_str" id="wcm_address_str" value="0.0.0.255"></p>
 <p>测试地址 <input type="text" name="test_address_str" id="test_address_str" value="192.168.1.2"></p>
+<button id="testAddress" onClick="checkResult()">测试</button>
 <p>测试结果</p>
 <p><span id="compare_result"></span></p>
 

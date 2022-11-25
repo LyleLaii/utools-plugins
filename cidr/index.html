@@ -55,7 +55,7 @@
 		<ul class="tab">
 			<li id="li_tab1" class="li current" onclick="toTab1()"><span>IPV4子网划分计算</span></li>
 			<li id="li_tab2" class="li" onclick="toTab2()"><span>IPV4反掩码计算</span></li>
-			<li id="li_tab3" class="li" onclick="toTab3()"><span>TDB</span></li>
+			<li id="li_tab3" class="li" onclick="toTab3()"><span>IPV6子网划分计算</span></li>
 		</ul>
 	</div>
     <div id="contentarea">
@@ -83,8 +83,7 @@ function toTab3() {
 	document.getElementById("li_tab1").className="li";
 	document.getElementById("li_tab2").className="li";
 	document.getElementById("li_tab3").className="li current";
-    document.getElementById("contentarea").innerHTML = '<p>TBD</p>'
-
+	document.getElementById("contentarea").innerHTML = '<object type="text/html" data="subnetCalculatorV6.html" width="1000" height="1000"></object>'
 	
 }
  </script>
